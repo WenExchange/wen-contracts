@@ -1,0 +1,263 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MarketplaceStorage",
+  "sourceName": "contracts/marketplace/MarketplaceStorage.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ownerCutPerMillion",
+          "type": "uint256"
+        }
+      ],
+      "name": "ChangedOwnerCutPerMillion",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "publicationFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "ChangedPublicationFee",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "assetId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "nftAddress",
+          "type": "address"
+        }
+      ],
+      "name": "OrderCancelled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "assetId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "nftAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "priceInWei",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "OrderCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "assetId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "nftAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalPrice",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        }
+      ],
+      "name": "OrderSuccessful",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "ERC721_Interface",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "InterfaceId_ValidateFingerprint",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "acceptedToken",
+      "outputs": [
+        {
+          "internalType": "contract ERC20Interface",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "orderByAssetId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "nftAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ownerCutPerMillion",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "publicationFeeInWei",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610239806100206000396000f3fe608060405234801561001057600080fd5b50600436106100725760003560e01c8063a01f79d411610050578063a01f79d414610126578063ae4f11981461013d578063e61f38511461014657600080fd5b80632b4c32be1461007757806337f82f37146100d4578063451c3d80146100fb575b600080fd5b61009e7f80ac58cd0000000000000000000000000000000000000000000000000000000081565b6040517fffffffff0000000000000000000000000000000000000000000000000000000090911681526020015b60405180910390f35b61009e7f8f9f4b63fb27ea36c52c6e650320201c8f2c6d7c1dfa95f40f5d5da52392016881565b60005461010e906001600160a01b031681565b6040516001600160a01b0390911681526020016100cb565b61012f60025481565b6040519081526020016100cb565b61012f60035481565b6101976101543660046101cb565b60016020818152600093845260408085209091529183529120805491810154600282015460038301546004909301546001600160a01b0392831693919092169185565b604080519586526001600160a01b03948516602087015292909316918401919091526060830152608082015260a0016100cb565b600080604083850312156101de57600080fd5b82356001600160a01b03811681146101f557600080fd5b94602093909301359350505056fea2646970667358221220f2fcfb3f69d5ed6ef3ccc2e920ea50a287df5db2c87aeb0df30992ccbb29277f64736f6c63430008180033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100725760003560e01c8063a01f79d411610050578063a01f79d414610126578063ae4f11981461013d578063e61f38511461014657600080fd5b80632b4c32be1461007757806337f82f37146100d4578063451c3d80146100fb575b600080fd5b61009e7f80ac58cd0000000000000000000000000000000000000000000000000000000081565b6040517fffffffff0000000000000000000000000000000000000000000000000000000090911681526020015b60405180910390f35b61009e7f8f9f4b63fb27ea36c52c6e650320201c8f2c6d7c1dfa95f40f5d5da52392016881565b60005461010e906001600160a01b031681565b6040516001600160a01b0390911681526020016100cb565b61012f60025481565b6040519081526020016100cb565b61012f60035481565b6101976101543660046101cb565b60016020818152600093845260408085209091529183529120805491810154600282015460038301546004909301546001600160a01b0392831693919092169185565b604080519586526001600160a01b03948516602087015292909316918401919091526060830152608082015260a0016100cb565b600080604083850312156101de57600080fd5b82356001600160a01b03811681146101f557600080fd5b94602093909301359350505056fea2646970667358221220f2fcfb3f69d5ed6ef3ccc2e920ea50a287df5db2c87aeb0df30992ccbb29277f64736f6c63430008180033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
