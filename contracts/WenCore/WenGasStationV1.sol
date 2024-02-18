@@ -120,6 +120,7 @@ contract WenGasStationV1 is
     event FeesReceived(uint256 amount);
     event FeesDistributed(address contractAddress, uint256 amount);
     event FeesCollected(address contractAddress, uint256 amount);
+    event YieldClaimed(address contractAddress, address receipient, uint256 amount);
 
     /* ========== Restricted Function  ========== */
 
@@ -255,6 +256,7 @@ contract WenGasStationV1 is
         feeGivers.pop();
     }
 
+
     /**
      * @notice Claim All Gas Fees From Blast
      * @notice To claim all of your contract’s gas fees, regardless of your resulting claim rate.
@@ -362,6 +364,15 @@ contract WenGasStationV1 is
         require(index != type(uint256).max, "Receiver not found");
         require(newPercentage > 0, "New Percentage should be bigger than 0");
         feeReceivers[index].percent = newPercentage;
+    }
+
+     /**
+        @notice Claim Yield for specific amount. 
+        @notice Claim Yield which gas station has been set as governor. 
+     */
+    function claimYield(address contractAddress, address recipient, uint256 amount) external onlyOperator{
+        uint256 yield = blast.claimYield(contractAddress, recipient, amount);
+        emit YieldClaimed(contractAddress, recipient, amount);
     }
 
     /* ========== External Function  ========== */

@@ -714,8 +714,8 @@
       ]
     },
     "/Users/cc/Desktop/wen/wen_core/contracts/marketplace/WenExchangeV1.sol": {
-      "lastModificationDate": 1708097912863,
-      "contentHash": "30322edc04d0a34bc7bac40ca49a3ef7",
+      "lastModificationDate": 1708239097158,
+      "contentHash": "3050a1cb2943cf583d03232d78f38a57",
       "sourceName": "contracts/marketplace/WenExchangeV1.sol",
       "solcConfig": {
         "version": "0.8.24",
