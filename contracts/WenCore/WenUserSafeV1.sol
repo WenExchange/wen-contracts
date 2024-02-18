@@ -35,6 +35,9 @@ contract WenUserSafeV1 is Initializable, OwnableUpgradeable, UUPSUpgradeable {
      */
     receive() external payable {}
 
+    fallback() external payable {}
+
+
     /**
      * @notice Used to initialize a new Treasury contract
      */

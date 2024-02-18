@@ -459,4 +459,13 @@ contract WenStakingV1 is
     function wen_getRewardForDuration() external view returns (uint256) {
         return wen_rewardData.rewardRate * REWARDS_DURATION;
     }
+
+
+    /**
+        @notice Receive ETH
+     */
+    receive() external payable {}
+    fallback() external payable {}
+
+
 }

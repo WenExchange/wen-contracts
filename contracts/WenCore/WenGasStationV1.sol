@@ -333,7 +333,7 @@ contract WenGasStationV1 is
         emit FeesCollected(addr, feeAmount);
     }
 
-    /**
+   /**
      * @notice Distribute Fees
      */
     function distributeFees() external onlyOperator {
@@ -350,12 +350,11 @@ contract WenGasStationV1 is
         // Distribute the balance according to each receiver's percentage
         for (uint256 i = 0; i < feeReceivers.length; i++) {
             FeeReceiverContract memory receiver = feeReceivers[i];
-            uint256 amount = ((totalBalance * receiver.percent)*1e10 / totalPercent)/1e10;
-            payable(receiver.receiver).transfer(amount);
+            uint256 amount = ((totalBalance * receiver.percent*1e10) / totalPercent)/1e10;
+            payable(receiver.receiver).call{value:amount}("");
             emit FeesDistributed(receiver.receiver, amount);
         }
     }
-
     function changePercentage(
         address contractAddr,
         uint256 newPercentage
@@ -372,7 +371,16 @@ contract WenGasStationV1 is
      */
     function claimYield(address contractAddress, address recipient, uint256 amount) external onlyOperator{
         uint256 yield = blast.claimYield(contractAddress, recipient, amount);
-        emit YieldClaimed(contractAddress, recipient, amount);
+        emit YieldClaimed(contractAddress, recipient, yield);
+    }
+
+    /**
+        @notice Claim all yields. This will be called by operator regularly.
+     */
+    function claimAllYield(address contractAddress, address recipient) external onlyOperator {
+        require(operators[msg.sender], "Not a operators");
+        uint256 yield = blast.claimAllYield(contractAddress, recipient);
+        emit YieldClaimed(contractAddress, recipient, yield);
     }
 
     /* ========== External Function  ========== */
