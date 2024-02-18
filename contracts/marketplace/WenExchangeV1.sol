@@ -252,6 +252,11 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
     uint256 expiresAt;
   }
 
+  struct CollectionOrder {
+    uint256 tokenId;
+    uint256 price;
+}
+
   // From ERC721 registry assetId to Order (to avoid asset collision)
   mapping (address => mapping(uint256 => Order)) public orderByAssetId;
 
@@ -268,6 +273,7 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
   );
 
   bytes4 public constant ERC721_Interface = bytes4(0x80ac58cd);
+  mapping(address => CollectionOrder[]) public ordersByCollection;
 
   // EVENTS
   event OrderCreated(
@@ -538,6 +544,12 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
       )
     );
 
+    CollectionOrder memory newOrder = CollectionOrder({
+        tokenId: assetId,
+        price: priceInWei
+    });
+    ordersByCollection[nftAddress].push(newOrder);
+
     orderByAssetId[nftAddress][assetId] = Order({
       id: orderId,
       seller: assetOwner,
@@ -582,6 +594,13 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
     address orderSeller = order.seller;
     address orderNftAddress = order.nftAddress;
     delete orderByAssetId[nftAddress][assetId];
+
+    uint256 index = _findOrderIndex(nftAddress, assetId);
+    require(index != type(uint256).max , "Order does not exist");
+
+    // 주문을 컬렉션별 주문 배열에서 제거
+    ordersByCollection[nftAddress][index] = ordersByCollection[nftAddress][ordersByCollection[nftAddress].length - 1];
+    ordersByCollection[nftAddress].pop();
 
     emit OrderCancelled(
       orderId,
@@ -705,6 +724,14 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
     return order;
   }
 
+function _findOrderIndex(address nftAddress, uint256 tokenId) private view returns (uint256) {
+    for (uint256 i = 0; i < ordersByCollection[nftAddress].length; i++) {
+        if (ordersByCollection[nftAddress][i].tokenId == tokenId) {
+            return i;
+        }
+    }
+    return type(uint256).max; 
+}
   function _requireERC721(address nftAddress) internal view {
     require(nftAddress.isContract(), "MarketplaceV2#_requireERC721: INVALID_NFT_ADDRESS");
 
@@ -714,4 +741,18 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
       "MarketplaceV2#_requireERC721: INVALID_ERC721_IMPLEMENTATION"
     );
   }
+
+  function getOrdersByCollection(address nftAddress) public view returns (uint256[] memory, uint256[] memory) {
+    CollectionOrder[] memory collectionOrders = ordersByCollection[nftAddress];
+    uint256[] memory tokenIds = new uint256[](collectionOrders.length);
+    uint256[] memory prices = new uint256[](collectionOrders.length);
+
+    for (uint256 i = 0; i < collectionOrders.length; i++) {
+        tokenIds[i] = collectionOrders[i].tokenId;
+        prices[i] = collectionOrders[i].price;
+    }
+
+    return (tokenIds, prices);
+}
+
 }
