@@ -8,11 +8,11 @@
 
 ## Core Contract Details
 
-- ### [Wen Trade Pool V1]('https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenTradePool')
+- ### [Wen Trade Pool V1](https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenTradePool)
 
-- ### [Wen Gas Station V1]('https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenGasStation')
+- ### [Wen Gas Station V1](https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenGasStation)
 
-- ### [Wen Staking V1]('https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenStaking')
+- ### [Wen Staking V1](https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenStaking)
 
 ## Other Wen Exchnage repositories
 
