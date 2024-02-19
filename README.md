@@ -1,74 +1,56 @@
-# WenGasStationV1 Smart Contract
+<p align="center">
+  <a href="https://codesandbox.io">
+    <img src="https://i.ibb.co/xLNBqMw/Group-39489.png" height="170px">
+  </a>
+</p>
 
-To maximize efficiency and ensure no value is lost from not achieving a 100% claim rate, gas fees will be collected every month. This collection process not only enhances the utility of the gas station but also serves as a beneficial resource for two main participant groups within the Wen Exchange ecosystem: active traders and WEN token stakers.
+&nbsp;
 
-### The distribution of gas fees is structured into three distinct segments:
+## Core Contract Details
 
-1. **Wen Exchange Users**
-   Active participants engaging in bidding, buying NFTs, and listing NFTs on Wen Exchange are eligible to receive WEN airdrop points. A significant portion, amounting to 73% of the collected gas fees, is allocated for refunds to these users, rewarding their platform activity.
-2. **Wen Token Stakers**
-   After we start issuing the first WEN tokens, those who stake their WEN tokens in WEN staking farm will receive a 20% of the gas fees collected. This rewards long-term support and participation in the Wen ecosystem.
-   Treasury
-3. **The treasury** will amass 7% of the gas fees, dedicated to funding further development and growth of the platform. Importantly, decisions regarding the allocation and expenditure of the treasury funds are democratically made by WEN token holders, ensuring community involvement in the strategic direction of Wen Exchange.
+- ### [Wen Trade Pool V1]('https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenTradePool')
 
-## Key Features
+- ### [Wen Gas Station V1]('https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenGasStation')
 
-- **Gas Fee and Yield Management:** Interface with the IBlast contract for gas and yield-related operations.
-- **Upgradeable:** Leverages UUPS (Universal Upgradeable Proxy Standard) for safe and flexible contract upgrades.
-- **Access Control:** Ownable and operator-based permissions for executing sensitive functions.
-- **Pausable:** Contract can be paused and unpaused by the owner for emergency management.
+- ### [Wen Staking V1]('https://github.com/WenExchange/wen-contracts/tree/main/contracts/WenCore/WenStaking')
 
-## Main Functions
+## Other Wen Exchnage repositories
 
-### Initial Setup
+Wen Exchange consists of several code base, some of which are open
+sourced.
 
-- `setInitialInfo(address _blast)`: Sets the initial configuration with the Blast contract address and configures claimable yield and gas.
-- `initialize()`: Initializes the contract with necessary setups for ownership and security features.
+- [Wen Bot](https://github.com/WenExchange/wen-bot): Wen Exchange Bot that harvest Blast native Yields.
+- [Wen Interface](https://github.com/WenExchange/wen-interface): Interface of Wen
+- [Git Extractor](https://github.com/codesandbox/codesandbox-importers):
+  responsible for extracting the source from a GitHub repository
+- Wen Builder Tool: To be public soon.
 
-### Configuration
+## Documentation
 
-- `setBlast(address _blast)`: Updates the IBlast contract address.
-- `setBlastGovernor(address _governor)`: Sets the governor address in the Blast contract for claiming gas fees.
-- `setOperator(address[] calldata _operators)`: Approves multiple operators for managing the contract.
-- `revokeOperator(address _operator)`: Revokes an operator's permission.
-- `addFeeReceiver(address _receiver, uint256 _percent)`: Adds a new fee receiver with their corresponding percentage for fee distribution.
-- `removeFeeReceiver(address _receiver)`: Removes an existing fee receiver.
-- `addFeeGiver(address _giver)`: Registers a new fee giver contract.
-- `removeFeeGiver(address _giver)`: Removes an existing fee giver contract.
+You can find our documentation on our
+[website](https://docs.wen.exchange)
 
-### Gas Fee Management
+## If you want to test contracts
 
-- `claimAll()`: Claims all gas fees for all registered fee giver contracts.
-- `claimAllByContract(address addr)`: Claims all gas fees for a specific contract.
-- `claimMax()`: Claims gas fees at a 100% claim rate for all registered fee giver contracts.
-- `claimMaxByContract(address addr)`: Claims gas fees at a 100% claim rate for a specific contract.
-- `claimGasAtMinClaimRate(uint256 minClaimRateBips)`: Claims gas fees with a minimum claim rate for all registered fee giver contracts.
-- `claimGasAtMinClaimRateByContract(address addr, uint256 minClaimRateBips)`: Claims gas fees with a minimum claim rate for a specific contract.
+1. Install dependencies
 
-### Yield Management
+<code> npm i</code>
 
-- `claimYield(address recipient, uint256 amount)`: Claims a specific amount of yield for a recipient.
-- `claimAllYield(address recipient)`: Claims all available yield for a recipient.
-- `claimYield(address contractAddress, address recipient, uint256 amount)`: Claims a specific amount of yield from a specific contract for a recipient.
-- `claimAllYield(address contractAddress, address recipient)`: Claims all available yield from a specific contract for a recipient.
+2. Change sample.hardhat.config.js file to hadhat.config.js
 
-### Fee Distribution
+Change [YOUR_PRIVATE_KEY] section to your private key.
 
-- `distributeFees()`: Distributes the collected fees among registered fee receivers based on their percentage.
+3. Compile Smart Contracts
 
-### Utility Functions
+<code>npx hardhat compile</code>
 
-- `pause()`: Pauses the contract, disabling all non-view and non-pure functions.
-- `unpause()`: Unpauses the contract, re-enabling all functions.
+4. Deploy Smart contracts on blast testnet.
 
-## Modifiers
+You Should have testnet ETH on your account to deploy on the testnet.
 
-- `onlyOperator()`: Restricts function access to approved operators.
+<code>npx hardhat run --network blast_sepolia migrations/DeployMarketplace.js
+</code>
 
-## Events
+## Thanks
 
-- Events for tracking fees received, distributed, collected, and yield claimed.
-
-## Notice
-
-This contract is designed to interact with specific external contracts and systems. Ensure that you have proper permissions and understand the impact of these operations within your ecosystem.
+Thanks to [Blast](https://blast.io/en) for providing the infrastructure for innovation.
