@@ -21,14 +21,12 @@ sourced.
 
 - [Wen Bot](https://github.com/WenExchange/wen-bot): Wen Exchange Bot that harvest Blast native Yields.
 - [Wen Interface](https://github.com/WenExchange/wen-interface): Interface of Wen
-- [Git Extractor](https://github.com/codesandbox/codesandbox-importers):
-  responsible for extracting the source from a GitHub repository
 - Wen Builder Tool: To be public soon.
 
 ## Documentation
 
 You can find our documentation on our
-[website](https://docs.wen.exchange)
+[docs](https://docs.wen.exchange)
 
 ## If you want to test contracts
 
