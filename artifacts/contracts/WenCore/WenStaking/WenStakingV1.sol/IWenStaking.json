@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
   "contractName": "IWenStaking",
-  "sourceName": "contracts/WenCore/WenStakingV1.sol",
+  "sourceName": "contracts/WenCore/WenStaking/WenStakingV1.sol",
   "abi": [
     {
       "inputs": [],

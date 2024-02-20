@@ -598,7 +598,6 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
     uint256 index = _findOrderIndex(nftAddress, assetId);
     require(index != type(uint256).max , "Order does not exist");
 
-    // 주문을 컬렉션별 주문 배열에서 제거
     ordersByCollection[nftAddress][index] = ordersByCollection[nftAddress][ordersByCollection[nftAddress].length - 1];
     ordersByCollection[nftAddress].pop();
 
@@ -627,7 +626,7 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
   )
    internal returns (Order memory)
   {
-    _requireERC721(nftAddress); // 이게 NFT address 맞는지 확인
+    _requireERC721(nftAddress); 
 
     address sender = _msgSender();
 
@@ -649,8 +648,10 @@ contract WenExchangeV1 is Ownable, Pausable, NativeMetaTransaction {
     require(block.timestamp < order.expiresAt, "MarketplaceV2#_executeOrder: ORDER_EXPIRED");
     require(order.seller == nftRegistry.ownerOf(assetId), "MarketplaceV2#_executeOrder: SELLER_NOT_OWNER");
 
-
     delete orderByAssetId[nftAddress][assetId];
+    
+    ordersByCollection[nftAddress][assetId] = ordersByCollection[nftAddress][ordersByCollection[nftAddress].length - 1];
+    ordersByCollection[nftAddress].pop();
 
     uint256 feesCollectorShareAmount;
     uint256 royaltiesShareAmount;

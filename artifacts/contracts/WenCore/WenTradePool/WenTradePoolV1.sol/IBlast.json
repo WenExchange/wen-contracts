@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
   "contractName": "IBlast",
-  "sourceName": "contracts/WenCore/WenGasStationV1.sol",
+  "sourceName": "contracts/WenCore/WenTradePool/WenTradePoolV1.sol",
   "abi": [
     {
       "inputs": [

@@ -19,6 +19,11 @@ async function main() {
   //   RoyaltieManager = await hre.ethers.deployContract("RoyaltiesManager");
   //   await RoyaltieManager.waitForDeployment();
 
+  RoyaltieManager = await hre.ethers.getContractAt(
+    "RoyaltiesManager",
+    "0x43A3BA7488C8D3b965BfdB75Dbe2A029D4E88228"
+  );
+
   WenGasStation = await hre.ethers.getContractAt(
     "WenGasStationV1",
     "0xE1178f7eD637e70B551596e48c651CAF3394c247"
@@ -26,23 +31,23 @@ async function main() {
 
   WenExchange = await hre.ethers.getContractAt(
     "WenExchangeV1",
-    "0xFdc27371A04d9C4B632a0B0378Bc471f556FCAb2"
+    "0x6041ACd8c201BECB47bBA8cb2337BE241ed53e5f"
   );
 
-  //   WenExchange = await hre.ethers.deployContract("WenExchangeV1", [
-  //     signerAddr,
-  //     operatorAddr,
-  //     "0xd44cDe3AC1B0Ea355E6e41Ff938B6FaB4624ECb6",
-  //     RoyaltieManager.target,
-  //     0,
-  //     0,
-  //     "0xE4e5f726677A159B69e0159f464693E430227811",
-  //     blastAddress,
-  //   ]);
-  //   await WenExchange.waitForDeployment();
+  // WenExchange = await hre.ethers.deployContract("WenExchangeV1", [
+  //   signerAddr,
+  //   operatorAddr,
+  //   "0xd44cDe3AC1B0Ea355E6e41Ff938B6FaB4624ECb6",
+  //   RoyaltieManager.target,
+  //   0,
+  //   0,
+  //   "0xE4e5f726677A159B69e0159f464693E430227811",
+  //   blastAddress,
+  // ]);
+  // await WenExchange.waitForDeployment();
 
-  //   console.log("WenExchange Address: >>>", WenExchange.target);
-  //   console.log("RoyaltieManager Address: >>>", RoyaltieManager.target);
+  console.log("WenExchange Address: >>>", WenExchange.target);
+  console.log("RoyaltieManager Address: >>>", RoyaltieManager.target);
 
   // ========== 2. SetInitial Info Upgradeable Contract ===========
 
@@ -51,7 +56,7 @@ async function main() {
 
   // Delete past one
   tx = await WenGasStation.connect(signer).removeFeeGiver(
-    "0x3EDb63101963A989764f207557AE8E6462295E8d"
+    "0xFdc27371A04d9C4B632a0B0378Bc471f556FCAb2"
   );
   await tx.wait();
   // Add new one

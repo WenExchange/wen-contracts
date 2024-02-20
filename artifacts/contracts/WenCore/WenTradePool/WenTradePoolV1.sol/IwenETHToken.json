@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
   "contractName": "IwenETHToken",
-  "sourceName": "contracts/WenCore/WenTradePoolV1.sol",
+  "sourceName": "contracts/WenCore/WenTradePool/WenTradePoolV1.sol",
   "abi": [
     {
       "anonymous": false,
